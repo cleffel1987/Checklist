@@ -1,18 +1,27 @@
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="groups">
-  <thead>
-    <tr>
-      <th class="d-none">ID</th>
-      <th>Complete</th>
-      <th>Group Name</th>
-      <th>Add Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let group of groups">
-      <td class="d-none">{{ group.id }}</td>
-      <td><input type="checkbox" checked="{{ group.complete }}" value="{{ group.complete }}" /></td>
-      <td><span>{{ group.groupName }}</span></td>
-      <td><span>{{ group.addDate | date:'MM-dd-yyyy hh:mm a' }}</span></td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-8"></div>
+    <div class="col-4">
+      <div class=""></div>
+    </div>
+  </div>
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="groups">
+    <thead>
+      <tr>
+        <th class="d-none">ID</th>
+        <th>Complete</th>
+        <th>Group Name</th>
+        <th>Add Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groups">
+        <td class="d-none">{{ group.id }}</td>
+        <td><input type="checkbox" checked="{{ group.complete }}" value="{{ group.complete }}" /></td>
+        <td><span>{{ group.groupName }}</span></td>
+        <td><span>{{ group.addDate | date:'MM-dd-yyyy hh:mm a' }}</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
