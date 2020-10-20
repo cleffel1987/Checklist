@@ -4,14 +4,16 @@ using CheckList.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckList.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201019211318_TaskRelTaskGroupAdd")]
+    partial class TaskRelTaskGroupAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,9 +138,6 @@ namespace CheckList.Data.Migrations
 
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Complete")
-                        .HasColumnType("bit");
 
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");

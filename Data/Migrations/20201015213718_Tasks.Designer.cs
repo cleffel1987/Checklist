@@ -4,14 +4,16 @@ using CheckList.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckList.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201015213718_Tasks")]
+    partial class Tasks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,7 +104,7 @@ namespace CheckList.Data.Migrations
                     b.Property<DateTime?>("TaskDue")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("TaskGroupId")
+                    b.Property<Guid?>("TaskGroupID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TaskTitle")
@@ -118,7 +120,7 @@ namespace CheckList.Data.Migrations
 
                     b.HasIndex("AddByUserId");
 
-                    b.HasIndex("TaskGroupId");
+                    b.HasIndex("TaskGroupID");
 
                     b.HasIndex("UpdateByUserId");
 
@@ -136,9 +138,6 @@ namespace CheckList.Data.Migrations
 
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Complete")
-                        .HasColumnType("bit");
 
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");
@@ -379,11 +378,9 @@ namespace CheckList.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AddByUserId");
 
-                    b.HasOne("CheckList.Models.TaskGroup", "TaskGroup")
+                    b.HasOne("CheckList.Models.TaskGroup", null)
                         .WithMany("Task")
-                        .HasForeignKey("TaskGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskGroupID");
 
                     b.HasOne("CheckList.Models.ApplicationUser", "UpdateByUser")
                         .WithMany()

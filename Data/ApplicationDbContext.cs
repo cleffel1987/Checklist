@@ -3,6 +3,7 @@ using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using IdentityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,9 @@ namespace CheckList.Data
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
-        {
-        }
+        {    }        
+
+        public DbSet<CheckList.Models.TaskGroup> TaskGroups { get; set; }
+        public DbSet<CheckList.Models.Task> Tasks { get; set; }
     }
 }
