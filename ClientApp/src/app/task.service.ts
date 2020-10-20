@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { getBaseUrl } from '../main';
 
 @Injectable()
 export class TaskService {
   private headers: HttpHeaders;
+  private params: HttpParams;
   private accessPointUrl: string = getBaseUrl() + 'tasks';
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    this.params = new HttpParams();
   }
 
   public getTasks(model) {
-    return this.http.get(this.accessPointUrl + '/' + model.taskgroupid, { headers: this.headers });
+    this.params.append("id", model)
+
+    return this.http.get(this.accessPointUrl + '/' + model, { headers: this.headers });
   }
 
   public addTask(model) {

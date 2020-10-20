@@ -1,9 +1,7 @@
 import { Component, Inject, OnInit, Output } from '@angular/core';
-import { AuthorizeService } from '../../api-authorization/authorize.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { catchError, retry } from 'rxjs/operators';
+import { WelcomeService } from '../welcome.service';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +9,12 @@ import { catchError, retry } from 'rxjs/operators';
 })
 
 
-export class HomeComponent implements OnInit {
-  public isAuthenticated: Observable<boolean>;
-  public userName: Observable<string>;
+export class HomeComponent {
+  public greetings: string;
 
-  constructor(private authorizeService: AuthorizeService) { }
 
-  ngOnInit() {
-    this.isAuthenticated = this.authorizeService.isAuthenticated();
-    this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
+  constructor(private welcomeService: WelcomeService) {
+    welcomeService.getSalutation().subscribe((data: any) => this.greetings = data);
   }
+
 }

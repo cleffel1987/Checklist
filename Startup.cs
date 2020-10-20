@@ -63,6 +63,7 @@ namespace CheckList
             }
 
             app.UseHttpsRedirection();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

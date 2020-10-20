@@ -24,24 +24,10 @@ namespace CheckList.Controllers
         }
 
         // GET: api/Tasks
-        [HttpGet("{TaskGroupId}")]
-        public async Task<ActionResult<IEnumerable<CheckList.Models.Task>>> GetTasks(Guid TaskGroupId)
-        {
-            return await _db.Tasks.Where(w=>w.TaskGroupId == TaskGroupId).ToListAsync();
-        }
-
-        // GET: api/Tasks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CheckList.Models.Task>> GetTask(Guid id)
+        public async Task<ActionResult<IEnumerable<CheckList.Models.Task>>> GetTasks(Guid id)
         {
-            var task = await _db.Tasks.FindAsync(id);
-
-            if (task == null)
-            {
-                return NotFound();
-            }
-
-            return task;
+            return await _db.Tasks.Where(w=>w.TaskGroupId == id).ToListAsync();
         }
 
         // PUT: api/Tasks/5
